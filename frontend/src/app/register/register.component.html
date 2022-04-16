@@ -13,35 +13,35 @@
         type="text"
         id="name"
         name="name"
-        formControlName="name"
         placeholder="Name"
         minlength="3"
         maxlength="20"
+        formControlName="username"
         required
       />
     </div>
     <div
       *ngIf="
-        signupForm.controls['name'].invalid &&
-        (signupForm.controls['name'].dirty ||
-          signupForm.controls['name'].touched)
+        signupForm.controls['username'].invalid &&
+        (signupForm.controls['username'].dirty ||
+          signupForm.controls['username'].touched)
       "
     >
       <div
         class="alert alert-warning err-msg"
-        *ngIf="signupForm.controls['name'].errors?.['required']"
+        *ngIf="signupForm.controls['username'].errors?.['required']"
       >
         Username is required.
       </div>
       <div
         class="alert alert-warning err-msg"
-        *ngIf="signupForm.controls['name'].errors?.['minlength']"
+        *ngIf="signupForm.controls['username'].errors?.['minlength']"
       >
         Username must be at least 3 characters
       </div>
       <div
         class="alert alert-warning err-msg"
-        *ngIf="signupForm.controls['name'].errors?.['maxlength']"
+        *ngIf="signupForm.controls['username'].errors?.['maxlength']"
       >
         Username must be at most 20 characters
       </div>
@@ -51,6 +51,7 @@
         type="email"
         id="email"
         name="email"
+        formControlName="email"
         placeholder="E-mail"
         required
       />
@@ -82,6 +83,7 @@
         name="password"
         placeholder="Password"
         formControlName="password"
+        minlength="6"
         required
       />
     </div>

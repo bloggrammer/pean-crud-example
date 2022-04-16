@@ -9,7 +9,6 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';

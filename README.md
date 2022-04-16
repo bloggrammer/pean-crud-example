@@ -30,7 +30,7 @@ With the **To-Do** application:
 
 • Angular Client sends HTTP Requests and retrieves HTTP Responses using HTTPClient, consume data on the components. Angular Router is used for navigating to pages.
 
-## Backend (Node.Js)
+# Backend (Node.Js)
 
 ![to-do-app](img/Picture3.png)
 **HTTP request** that matches a _Express_ routes, is checked by **CORS Middleware** before reaching the **Security** layer of the application
@@ -136,5 +136,6 @@ The frontened implementation includes `HttpInterceptor`, `Router`, `HttpClient`,
 
 ### Technology
 
-– Angular 8  
-– RxJS 6
+- Angular 13 
+- RxJS 6
+- Bootstrap 4

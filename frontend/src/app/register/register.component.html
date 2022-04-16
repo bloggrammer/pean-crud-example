@@ -1,0 +1,122 @@
+<div class="mainContainer">
+  <h1>REGISTER</h1>
+
+  <form
+    action=""
+    method="POST"
+    [formGroup]="signupForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <div class="center">
+      <input
+        type="text"
+        id="name"
+        name="name"
+        formControlName="name"
+        placeholder="Name"
+        minlength="3"
+        maxlength="20"
+        required
+      />
+    </div>
+    <div
+      *ngIf="
+        signupForm.controls['name'].invalid &&
+        (signupForm.controls['name'].dirty ||
+          signupForm.controls['name'].touched)
+      "
+    >
+      <div
+        class="alert alert-warning err-msg"
+        *ngIf="signupForm.controls['name'].errors?.['required']"
+      >
+        Username is required.
+      </div>
+      <div
+        class="alert alert-warning err-msg"
+        *ngIf="signupForm.controls['name'].errors?.['minlength']"
+      >
+        Username must be at least 3 characters
+      </div>
+      <div
+        class="alert alert-warning err-msg"
+        *ngIf="signupForm.controls['name'].errors?.['maxlength']"
+      >
+        Username must be at most 20 characters
+      </div>
+    </div>
+    <div class="center">
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="E-mail"
+        required
+      />
+    </div>
+    <div
+      *ngIf="
+        signupForm.controls['email'].invalid &&
+        (signupForm.controls['email'].dirty ||
+          signupForm.controls['email'].touched)
+      "
+    >
+      <div
+        class="alert alert-danger err-msg"
+        *ngIf="signupForm.controls['email'].errors?.['required']"
+      >
+        Email is required.
+      </div>
+      <div
+        class="alert alert-danger err-msg"
+        *ngIf="signupForm.controls['email'].errors?.['email']"
+      >
+        Email must be a valid email address
+      </div>
+    </div>
+    <div class="center">
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+        formControlName="password"
+        required
+      />
+    </div>
+
+    <div
+      *ngIf="
+        signupForm.controls['password'].invalid &&
+        (signupForm.controls['password'].dirty ||
+          signupForm.controls['password'].touched)
+      "
+    >
+      <div
+        class="alert alert-danger err-msg"
+        *ngIf="signupForm.controls['password'].errors?.['required']"
+      >
+        Password is required.
+      </div>
+      <div
+        class="alert alert-danger err-msg"
+        *ngIf="signupForm.controls['password'].errors?.['minlength']"
+      >
+        Password must be at least 6 characters
+      </div>
+    </div>
+    <div class="center">
+      <input class="btn" type="submit" value="Register" />
+    </div>
+    <div class="alert alert-warning" *ngIf="isSignUpFailed">
+      Signup failed!<br />{{ errorMessage }}
+    </div>
+    <div class="center">
+      <a href="/">Already Registered? Login Here</a>
+    </div>
+  </form>
+  <div class="alert alert-success" *ngIf="isSuccessful">
+    Your registration is successful!
+  </div>
+</div>

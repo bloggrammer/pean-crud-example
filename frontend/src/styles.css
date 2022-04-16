@@ -1,0 +1,122 @@
+body {
+    font-size: 18px;
+}
+
+td:nth-child(4) {
+    position: relative;
+    width: 30px;
+}
+
+td:nth-child(1) {
+    width: 600px;
+}
+
+.priority {
+    width: 90px;
+}
+
+.datepicker {
+    width: 155px;
+}
+
+.done-true {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.removeBtn {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    top: calc(50% - 10px);
+}
+
+.removeBtn:hover {
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+span {
+    cursor: pointer;
+}
+
+.editItem .removeBtn {
+    display: none;
+}
+
+.editItem .todoSummary {
+    display: none;
+}
+
+.editForm {
+    display: none;
+}
+
+.editItem .editForm {
+    display: inline-block;
+}
+
+.createTask {
+    background-color: rgba(128, 128, 128, 0.66);
+    padding: 10px;
+}
+
+.sortorder:after {
+    content: '\25b2';
+}
+
+.sortorder.reverse:after {
+    content: '\25bc';
+}
+
+.Bg3 {
+    background-color: #f2dede;
+}
+
+.createForm {
+    display: inline-block;
+}
+.tasksLeft {
+    float:right;
+    display: inline-block;
+}
+.toDoContainer{
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.logout{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.mainContainer{
+    border-radius: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+    width: 100vw;
+}
+
+.center {
+    display: flex;
+    justify-content:center
+}
+
+.err-msg{
+font-size: 16px;
+font-style: italic;
+text-align: center;
+}
+.btn:hover{
+    background-color: skyblue;
+    border: none;
+}

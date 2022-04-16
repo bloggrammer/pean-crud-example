@@ -136,5 +136,6 @@ The frontened implementation includes `HttpInterceptor`, `Router`, `HttpClient`,
 
 ### Technology
 
-– Angular 8  
-– RxJS 6
+- Angular 13 
+- RxJS 6
+- Bootstrap 4

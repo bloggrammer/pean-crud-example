@@ -10,22 +10,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require("../backend/models");
-const Role = db.role;
-db.sequelize.sync();
-// db.sequelize.sync({ force: true }).then(() => {
-// 	console.log('Drop and re-sync db.');
-// 	initial();
-// });
-// function initial() {
-// 	Role.create({
-// 		id: 1,
-// 		name: 'user',
-// 	});
-// 	Role.create({
-// 		id: 3,
-// 		name: 'admin',
-// 	});
-// }
+if (db.roleExits(1)) {
+  //Don't drop database
+  db.sequelize.sync();
+} else {
+  //Drop and re-sync db.
+  db.sequelize.sync({ force: true }).then(() => {
+    db.seedRoles();
+  });
+}
 require("../backend/routes/auth.routes")(app);
 require("../backend/routes/user.routes")(app);
 require("../backend/routes/item.routes")(app);

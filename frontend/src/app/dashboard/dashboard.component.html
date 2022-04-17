@@ -1,30 +1,56 @@
 <div class="mainContainer">
   <div ng-controller="TodoCtrl" class="toDoContainer">
     <div class="createTask">
-      <form ng-submit="addTodo()" class="form-inline createForm">
+      <form
+        action=""
+        method="POST"
+        [formGroup]="bForm"
+        (ngSubmit)="onSubmit(bForm.value)"
+        novalidateng-submit="addTodo()"
+        class="form-inline createForm"
+      >
+        <!--TITLE START-->
+        <div class="form-group">
+          <input
+            class="form-control"
+            size="30"
+            placeholder="New Title"
+            type="text"
+            id="title"
+            name="title"
+            formControlName="title"
+          />
+        </div>
+        <!--TITLE END-->
         <!--SUMMARY START-->
         <div class="form-group">
           <input
-            type="text"
             class="form-control"
-            ng-model="todoSummary"
             size="30"
-            placeholder="New task"
-            ng-click="endEditMode()"
+            placeholder="Description"
+            type="text"
+            id="description"
+            name="description"
+            formControlName="description"
           />
         </div>
         <!--SUMMARY END-->
         <!--PRIORITY START-->
         <div class="form-group">
-          <select
+          <!-- <select
             class="form-control priority"
-            name="priority"
+            name="tag"
             ng-model="priority"
             ng-click="endEditMode()"
           >
             <option value="3">High</option>
             <option value="2">Medium</option>
             <option value="1">Low</option>
+          </select> -->
+          <select class="form-select">
+            <option value="1">High</option>
+            <option value="2">Medium</option>
+            <option value="3">Low</option>
           </select>
         </div>
         <!--PRIORITY END-->
@@ -34,128 +60,70 @@
             class="form-control datepicker"
             type="date"
             name="dueDate"
-            ng-model="dueDate"
             placeholder="yyyy-MM-dd"
             min="2022-04-08"
             max="2029-12-31"
+            formControlName="dueDate"
             required
           />
         </div>
         <!--DUE DATE END-->
         <!--SUBMIT BTN-->
-        <button class="btn btn-default" type="submit">add</button>
+        <div class="form-group">
+          <button class="add-btn btn-secondary" type="submit">add</button>
+        </div>
         <!--SUBMIT BTN-->
       </form>
-      <!-- <span class="tasksLeft"
-        >Todo {{ remaining() }}/{{ todos.length }} [<a
-          href=""
-          ng-click="archive()"
-          >clear done tasks</a
-        >]</span
-      > -->
+      <span class="tasksLeft">Items: {{ items?.length }} </span>
     </div>
     <!--HEADER START-->
-    <table class="table table-hover">
-      <tr>
-        <th>
-          <a href="" ng-click="order('summary')">Summary</a>
-          <span
-            class="sortorder"
-            ng-show="predicate === 'summary'"
-            ng-class="{ reverse: reverse }"
-          ></span>
-        </th>
-        <th>
-          <a href="" ng-click="order('priority')">Priority</a>
-          <span
-            class="sortorder"
-            ng-show="predicate === 'priority'"
-            ng-class="{ reverse: reverse }"
-          ></span>
-        </th>
-        <th>
-          <a href="" ng-click="order('dueDate')">Due Date</a>
-          <span
-            class="sortorder"
-            ng-show="predicate === 'dueDate'"
-            ng-class="{ reverse: reverse }"
-          ></span>
-        </th>
-        <th></th>
-      </tr>
-      <!--LIST START -->
-      <tr ng-repeat="todo in todos | orderBy:predicate:reverse">
-        <td>
-          <input type="checkbox" class="todoCheckbox" ng-model="todo.done" />
-          <!-- <span
-            ng-click="edit($event)"
-            class="done-{{ todo.done }} todoSummary"
-            >{{ todo.summary }}</span
-          > -->
-          <form
-            class="editForm disabled form-inline"
-            ng-submit="editSubmit($event)"
-          >
-            <div class="form-group">
-              <!-- <input
-                class="form-control"
-                type="text"
-                size="30"
-                value="{{ todo.summary }}"
-              /> -->
-            </div>
-            <button class="btn btn-default" type="submit">save</button>
-          </form>
-        </td>
-        <td>
-          <select
-            class="form-control priority"
-            name="priority"
-            ng-model="todo.priority"
-            ng-change="saveToLocalStorage()"
-            ng-click="endEditMode()"
-          >
-            <option value="3">High</option>
-            <option value="2">Medium</option>
-            <option value="1">Low</option>
-          </select>
-        </td>
-        <td>
-          <input
-            class="form-control datepicker"
-            type="date"
-            name="dueDate"
-            ng-model="todo.dueDate"
-            placeholder="yyyy-MM-dd"
-            min="2022-04-08"
-            max="2029-12-31"
-            ng-change="saveToLocalStorage()"
-            required
-            ng-click="endEditMode()"
-          />
-        </td>
-        <!-- DUE DATE END-->
-        <!-- REMOVE BTN START-->
-        <td>
-          <img
-            ng-click="removeTask()"
-            src="/images/delete2.png"
-            class="removeBtn"
-            height="30"
-            width="30"
-            alt=""
-          />
-        </td>
-        <!-- REMOVE BTN END-->
-      </tr>
-      <!--LIST END-->
-    </table>
+    <div style="overflow: scroll; height: 300px">
+      <table id="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Tag</th>
+            <th>Due Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td><input type="checkbox" /></td>
+            <td>
+              <span>{{ item.id }}</span>
+            </td>
+            <td>
+              <span>{{ item.title }}</span>
+            </td>
+            <td>
+              <span>{{ item.description }}</span>
+            </td>
+            <td>
+              <span>{{ item.tag }}</span>
+            </td>
+            <td>
+              <span>{{ item.dueDate | date: "shortDate" }}</span>
+            </td>
+
+            <td>
+              <button
+                (click)="deleteItem(item.id)"
+                class="btn btn-sm btn-danger"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <!-- TODO END-->
   </div>
   <div class="logout">
-    <a href="/">Logout</a>
+    <button (click)="logout()">Logout</button>
   </div>
-  <!-- <div class="alert alert-success" *ngIf="isLoggedIn">
-    Logged in as {{ roles }}.
-  </div> -->
 </div>

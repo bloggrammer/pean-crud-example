@@ -2,14 +2,14 @@ body {
     font-size: 18px;
 }
 
-td:nth-child(4) {
+/* td:nth-child(4) {
     position: relative;
     width: 30px;
 }
 
 td:nth-child(1) {
     width: 600px;
-}
+} */
 
 .priority {
     width: 90px;
@@ -62,7 +62,26 @@ span {
 
 .createTask {
     background-color: rgba(128, 128, 128, 0.66);
-    padding: 10px;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.createForm {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 0% !important;
+}
+
+.form-group {
+    padding-right: 20px;
+    padding-top: 4%;
 }
 
 .sortorder:after {
@@ -87,6 +106,11 @@ span {
 .toDoContainer{
     max-width: 1024px;
     margin: 0 auto;
+    margin: 3rem;
+}
+
+.add-btn {
+    margin-bottom: 20px !important;
 }
 
 .logout{
@@ -102,8 +126,8 @@ span {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 80vh;
-    width: 100vw;
+    /* height: 80vh; */
+    /* width: 100vw; */
 }
 
 .center {
@@ -111,12 +135,44 @@ span {
     justify-content:center
 }
 
+
 .err-msg{
 font-size: 16px;
 font-style: italic;
 text-align: center;
 }
-.btn:hover{
+/* .btn:hover{
     background-color: skyblue;
     border: none;
-}
+} */
+#table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #table td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #table tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #table tr:hover {background-color: #ddd;}
+  
+  #table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #333;
+    color: white;
+  }
+  table {
+    text-align: left;
+    position: relative;
+  }
+  
+  th {
+    background: white;
+    position: sticky;
+    top: 0;
+  }

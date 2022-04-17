@@ -31,11 +31,11 @@ export class RegisterComponent implements OnInit {
   }
   ngOnInit() {
   }
-  onSubmit() {
+  onSubmit(data: { username: any; email: any; password: any; }) {
     const credentials = {
-      username: this.signupForm.get('username')?.value,
-      email: this.signupForm.get('email')?.value,
-      password: this.signupForm.get('password')?.value,
+      username: data.username,
+      email: data.email,
+      password: data.password,
     }
     this.authService.register(credentials).subscribe(
       data => {

@@ -5,7 +5,7 @@
     action=""
     method="POST"
     [formGroup]="signupForm"
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="onSubmit(signupForm.value)"
     novalidate
   >
     <div class="center">

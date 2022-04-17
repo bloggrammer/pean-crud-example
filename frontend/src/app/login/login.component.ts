@@ -33,10 +33,10 @@ export class LoginComponent implements OnInit {
       this.roles = this.tokenStorage.getUser().roles;
     }
   }
-  onSubmit() {
+  onSubmit(data: { email: any; password: any; }) {
     const credentials = {
-      email: this.loginForm.get('email')?.value,
-      password: this.loginForm.get('password')?.value,
+      email: data.email,
+      password: data.password,
     }
     this.authService.login(credentials).subscribe(
       data => {

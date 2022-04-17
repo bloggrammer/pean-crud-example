@@ -26,6 +26,8 @@ export class DashboardComponent implements OnInit {
   dueDate?: Date;
   errorMessage = '';
   items!: Item[] ;
+  tags = ['High', 'Medium', 'Low'];
+  selectedTag?: string;
   constructor(private fb: FormBuilder,  private userService: UserService, private tokenStorageService: TokenStorageService) {
     this.createForm();
   }
@@ -49,11 +51,11 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  onSubmit(data: { title: any; description: any; tag: any; dueDate: any; }) {
+  onSubmit(data: { title: any; description: any; tag: any; dueDate: any}) {
     const arg = {
       title: data.title,
       description: data.description,
-      tag: data.tag,
+      tag: this.selectedTag,
       dueDate: data.dueDate,
     }
     this.userService.postItems(arg).subscribe(
@@ -66,6 +68,7 @@ export class DashboardComponent implements OnInit {
           dueDate: data.dueDate,
         } as Item;
         this.items.push(arg)
+        
       },
       err => {
         this.errorMessage = err.error.message;
@@ -74,9 +77,6 @@ export class DashboardComponent implements OnInit {
     );
   }
   deleteItem(id: number){
-
-
-
     this.userService.deleteItem(id).subscribe(
       data => {
         for(let i = 0; i < this.items.length; ++i){
@@ -90,7 +90,9 @@ export class DashboardComponent implements OnInit {
         console.log(this.errorMessage);
       }
     );
-   
+}
+public selectCategory(event: Event): any {
+  this.selectedTag = (event.target as HTMLInputElement).value;
 }
   logout() {
    this.tokenStorageService.signOut();

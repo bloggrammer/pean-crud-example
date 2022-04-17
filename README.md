@@ -1,6 +1,7 @@
 # pean-crud-example
 
 PEAN (PostgreSQL + Node.js Express + Angular 13) stack CRUD example with JWT Authentication &amp; Authorization.
+![to-do-app](img/Picture10.png)
 
 ## Intro
 
@@ -136,6 +137,6 @@ The frontened implementation includes `HttpInterceptor`, `Router`, `HttpClient`,
 
 ### Technology
 
-- Angular 13 
+- Angular 13
 - RxJS 6
 - Bootstrap 4

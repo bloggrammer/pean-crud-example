@@ -1,6 +1,7 @@
-# pean-crud-example
+# A To-Do Application: PEAN CRUD Example
 
-PEAN (PostgreSQL + Node.js Express + Angular 13) stack CRUD example with JWT Authentication &amp; Authorization.
+PEAN (PostgreSQL + Express.js + Angular 13 + Node.js) stack CRUD example with JWT Authentication &amp; Authorization.
+
 ![to-do-app](img/Picture10.png)
 
 ## Intro
